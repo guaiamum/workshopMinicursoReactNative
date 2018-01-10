@@ -11,7 +11,8 @@ import {
 
 export default class NewRepoModal extends Component {
   state = {
-    newRepoText: 'guaiamum/XamarinFest'
+    // newRepoText: 'guaiamum/XamarinFest',
+    newRepoText: '',
   }
 
   render() {

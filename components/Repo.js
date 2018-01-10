@@ -18,8 +18,8 @@ export default class Repo extends Component<{}> {
             />
 
           <View style={styles.repoInfo}>
-            <Text> {this.props.data.title} </Text>
-            <Text note> {this.props.data.description} </Text>
+            <Text style={styles.repoTitle}> {this.props.data.title} </Text>
+            <Text style={styles.repoDescrip}> {this.props.data.description} </Text>
           </View>
 
         </View>
@@ -42,5 +42,14 @@ const styles = StyleSheet.create({
 
   repoInfo: {
     margin: 10,
+  },
+
+  repoTitle: {
+    fontWeight: 'bold',
+  },
+
+  repoDescrip: {
+    fontSize: 10,
+    color: '#848484'
   },
 });

@@ -6,6 +6,7 @@ import {
   ScrollView,
   Text,
   TouchableOpacity,
+  AsyncStorage,
   View
 } from 'react-native';
 
@@ -15,10 +16,13 @@ import NewRepoModal from './components/NewRepoModal';
 export default class App extends Component<{}> {
   state = {
     modalVisible: false,
-    repos: [
-      // {id:1,title: 'Oi',description: 'oioioi.com.br',thumbnail: 'https://avatars1.githubusercontent.com/u/21321095?s=460&v=4'},
-      // {id:2,title: 'Tchau',description: 'tchaaau.net',thumbnail: 'https://avatars1.githubusercontent.com/u/21321095?s=460&v=4'}
-    ],
+    repos: [ ],
+  }
+
+  async componentDidMount(){
+    const repos = JSON.parse(await AsyncStorage.getItem('@MiniCurso:repos')) || [ ];
+
+    this.setState({repos});
   }
 
   _addRepo = async (newRepoText ) => {
@@ -33,7 +37,6 @@ export default class App extends Component<{}> {
         title: response.name,
         description: response.html_url,
         thumbnail: response.owner.avatar_url
-        // thumbnail: "https://avatars2.githubusercontent.com/u/2254731?v=4"
       };
 
       this.setState({
@@ -43,6 +46,8 @@ export default class App extends Component<{}> {
           repo
         ]
       })
+
+      await AsyncStorage.setItem('@MiniCurso:repos',JSON.stringify(this.state.repos));
     } catch(err) {
       console.warn("fuck: " + err);
     }
@@ -83,7 +88,7 @@ const styles = StyleSheet.create({
 
   header: {
     paddingTop: (Platform.OS === 'ios') ? 20 : 0,
-    height: (Platform.OS === 'ios') ? 50 : 70,
+    height: (Platform.OS === 'ios') ? 70 : 50,
     backgroundColor: 'white',
     justifyContent: 'space-between',
     paddingHorizontal: 10,
