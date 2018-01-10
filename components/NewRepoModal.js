@@ -11,7 +11,7 @@ import {
 
 export default class NewRepoModal extends Component {
   state = {
-    newRepoText: '' //'diego3g/rocketnative'
+    newRepoText: 'guaiamum/XamarinFest'
   }
 
   render() {
@@ -76,12 +76,12 @@ const styles = StyleSheet.create({
   },
 
   boxInput: {
-    backgroundColor: '#DDD', /*
+    // backgroundColor: '#DDD', /*
     borderWidth: 1,
     borderColor: '#DDD',//*/
     marginVertical: 10,
     alignSelf: 'stretch',
-    paddingHorizontal: 20,
+    padding: 15,
   },
 
   buttonsContainer: {

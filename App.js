@@ -23,9 +23,11 @@ export default class App extends Component<{}> {
 
   _addRepo = async (newRepoText ) => {
     try{
-      const repoCall = await fetch(`https://api.github.com/repos/${newRepoText}`);
-      console.warn(repoCall);
-      const response = repoCall.json();
+      const options = { headers: {  method: 'GET',
+        'User-Agent': 'myWorkshopApp', } };
+      const repoCall = await fetch(`https://api.github.com/repos/${newRepoText}`, options);
+      const response = await repoCall.json();
+
       const repo = {
         id: response.id,
         title: response.name,
