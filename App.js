@@ -20,6 +20,7 @@ export default class App extends Component<{}> {
   }
 
   async componentDidMount(){
+    //loads data
     const repos = JSON.parse(await AsyncStorage.getItem('@MiniCurso:repos')) || [ ];
 
     this.setState({repos});
